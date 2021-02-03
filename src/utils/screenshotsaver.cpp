@@ -93,7 +93,8 @@ bool ScreenshotSaver::saveToFilesystem(const QPixmap& capture,
     if (ok) {
         ConfigHandler().setSavePath(path);
         saveMessage =
-          messagePrefix + QObject::tr("Capture saved as ") + completePath;
+          messagePrefix + QObject::tr("screenshot saved and path copied to clipboard: ") + completePath;
+        QApplication::clipboard()->setText(completePath);
         Controller::getInstance()->sendCaptureSaved(
           m_id, QFileInfo(completePath).canonicalFilePath());
     } else {
